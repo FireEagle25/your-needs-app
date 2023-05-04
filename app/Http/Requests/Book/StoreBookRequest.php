@@ -2,15 +2,10 @@
 
 namespace App\Http\Requests\Book;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreBookRequest extends FormRequest
 {
-
-    /**
-     * @return bool
-     */
     public function authorize(): bool
     {
         return true;
@@ -23,7 +18,7 @@ class StoreBookRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'author_id' => 'required|integer|exists:authors,id'
+            'author_id' => 'required|integer|exists:authors,id',
         ];
     }
 }

@@ -22,12 +22,11 @@ class AuthorController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $authors = Author::paginate();
+
         return AuthorResource::collection($authors);
     }
 
     /**
-     * @param StoreAuthorRequest $request
-     * @return JsonResponse
      * @throws BindingResolutionException
      */
     public function store(StoreAuthorRequest $request): JsonResponse
@@ -40,20 +39,16 @@ class AuthorController extends Controller
     }
 
     /**
-     * @param string $id
-     * @return AuthorWithBooksCountResource
      * @throws BindingResolutionException
      */
     public function show(string $id): AuthorWithBooksCountResource
     {
         $author = Author::with('books')->findOrFail($id);
+
         return app()->make(AuthorWithBooksCountResource::class, ['resource' => $author]);
     }
 
     /**
-     * @param UpdateAuthorRequest $request
-     * @param string $id
-     * @return AuthorResource
      * @throws BindingResolutionException
      */
     public function update(UpdateAuthorRequest $request, string $id): AuthorResource
@@ -64,13 +59,10 @@ class AuthorController extends Controller
         return app()->make(AuthorResource::class, ['resource' => $author]);
     }
 
-    /**
-     * @param string $id
-     * @return Response
-     */
     public function destroy(string $id): Response
     {
         Author::destroy($id);
+
         return response()->noContent();
     }
 }

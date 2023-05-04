@@ -4,7 +4,6 @@ namespace Tests\Feature\Api;
 
 use App\Models\Author;
 use App\Models\Book;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -12,6 +11,7 @@ use Tests\TestCase;
 class BookControllerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
+
     public function testIndex()
     {
         $response = $this->getJson(route('api.books.index'));

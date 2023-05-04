@@ -12,6 +12,7 @@ abstract class AbstractFilter
      * @var array<string, string>
      */
     protected array $filters = [];
+
     protected array $filtersData = [];
 
     public function __construct(array $filtersData = [])
@@ -19,10 +20,6 @@ abstract class AbstractFilter
         $this->filtersData = $filtersData;
     }
 
-    /**
-     * @param Request $request
-     * @return static
-     */
     public static function createWithRequest(Request $request): static
     {
         $filtersData = $request->all();
@@ -31,18 +28,13 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param array<mixed> $filtersData
-     * @return static
+     * @param  array<mixed>  $filtersData
      */
     public static function createWithArray(array $filtersData): static
     {
         return new static($filtersData);
     }
 
-    /**
-     * @param Builder $builder
-     * @return Builder
-     */
     public function filter(Builder $builder): Builder
     {
         foreach ($this->filtersData as $filter => $value) {
@@ -57,7 +49,6 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param string $fieldName
      * @return ?PropertyFilter
      */
     protected function resolveFilter(string $fieldName): ?PropertyFilter

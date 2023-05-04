@@ -13,7 +13,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class BookResource extends JsonResource
 {
     /**
-     * @param Request $request
      * @return array<mixed>
      */
     public function toArray(Request $request): array

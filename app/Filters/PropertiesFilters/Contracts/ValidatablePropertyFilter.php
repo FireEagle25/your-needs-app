@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 abstract class ValidatablePropertyFilter implements PropertyFilter
 {
     protected array $rules = [];
+
     public function filter(Builder $builder, mixed $value): Builder
     {
-        if (empty($value) || !$this->validate($value)) {
+        if (empty($value) || ! $this->validate($value)) {
             return $builder;
         }
 

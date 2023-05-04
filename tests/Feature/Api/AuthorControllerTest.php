@@ -5,8 +5,8 @@ namespace Tests\Feature\Api;
 use App\Models\Author;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use function PHPUnit\Framework\assertEmpty;
+use Tests\TestCase;
 
 class AuthorControllerTest extends TestCase
 {

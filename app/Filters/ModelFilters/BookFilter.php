@@ -8,7 +8,7 @@ use App\Filters\PropertiesFilters\AuthorWhereInFilter;
 class BookFilter extends AbstractFilter
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected array $filters = [
         'author' => AuthorWhereInFilter::class,

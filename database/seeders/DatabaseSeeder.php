@@ -17,13 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     private array $seeders = [
         BookSeeder::class,
-        AuthorSeeder::class
+        AuthorSeeder::class,
     ];
 
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run(): void
     {

@@ -14,7 +14,6 @@ use Illuminate\Http\Response;
 
 class BookController extends Controller
 {
-
     /**
      * @return AnonymousResourceCollection<BookResource>
      */
@@ -28,31 +27,26 @@ class BookController extends Controller
     }
 
     /**
-     * @param StoreBookRequest $request
-     * @return BookResource
      * @throws BindingResolutionException
      */
     public function store(StoreBookRequest $request): BookResource
     {
         $book = Book::create($request->validated());
+
         return app()->make(BookResource::class, ['resource' => $book]);
     }
 
     /**
-     * @param string $id
-     * @return BookResource
      * @throws BindingResolutionException
      */
     public function show(string $id): BookResource
     {
         $book = Book::findOrFail($id);
+
         return app()->make(BookResource::class, ['resource' => $book]);
     }
 
     /**
-     * @param UpdateBookRequest $request
-     * @param string $id
-     * @return BookResource
      * @throws BindingResolutionException
      */
     public function update(UpdateBookRequest $request, string $id): BookResource
@@ -63,10 +57,6 @@ class BookController extends Controller
         return app()->make(BookResource::class, ['resource' => $book]);
     }
 
-    /**
-     * @param string $id
-     * @return Response
-     */
     public function destroy(string $id): Response
     {
         $book = Book::findOrFail($id);
