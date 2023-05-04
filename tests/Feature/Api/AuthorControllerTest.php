@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use function PHPUnit\Framework\assertEmpty;
@@ -34,11 +35,19 @@ class AuthorControllerTest extends TestCase
 
     public function testShow()
     {
-        $author = Author::factory()->create();
+        $book = Book::factory()->create();
+        $author = Author::withCount('books')->find($book->author_id);
 
         $response = $this->getJson(route('api.authors.show', $author->id));
 
         $response->assertOk();
+        $response->assertJson([
+            'data' => [
+                'id' => $author->id,
+                'name' => $author->name,
+                'books_count' => $author->books_count,
+            ],
+        ]);
     }
 
     public function testUpdate()

@@ -43,7 +43,7 @@ class AuthorController extends Controller
      */
     public function show(string $id): AuthorWithBooksCountResource
     {
-        $author = Author::with('books')->findOrFail($id);
+        $author = Author::withCount('books')->findOrFail($id);
 
         return app()->make(AuthorWithBooksCountResource::class, ['resource' => $author]);
     }
